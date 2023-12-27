@@ -6,6 +6,7 @@ import dummyCucumber.context.TestContext;
 import dummyCucumber.domainobjects.BillingDetails;
 import dummyCucumber.domainobjects.Product;
 import dummyCucumber.pages.CartPage;
+import dummyCucumber.pages.PageFactoryManager;
 import dummyCucumber.pages.StorePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -16,20 +17,22 @@ import org.testng.Assert;
 
 public class StoreDefinitions {
 
-    private final WebDriver driver;
+    //private final WebDriver driver;
+    private final StorePage storePage;
     private final TestContext context;
 
     public StoreDefinitions(TestContext context) {
         this.context = context;
-        driver = context.driver;
+    //    driver = context.driver;
+        storePage = PageFactoryManager.getStorePage(context.driver);
     }
     @Given("I'm on the Store Page")
     public void i_m_on_the_store_page() {
-        new StorePage(driver).load(EndPoint.STORE.url);
+        /*new StorePage(driver)*/storePage.load(EndPoint.STORE.url);
     }
     @When("I add a {product} to the cart")
     public void i_add_a_to_the_cart(Product product) {
-        new StorePage(driver).addToCart(product.getName());
+        /*new StorePage(driver)*/storePage.addToCart(product.getName());
     }
 
     @And("I have a product in the cart")

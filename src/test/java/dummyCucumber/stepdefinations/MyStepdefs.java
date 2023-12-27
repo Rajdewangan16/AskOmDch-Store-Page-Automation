@@ -35,7 +35,8 @@ public class MyStepdefs {
 
     @Given("I'm a guest customer")
     public void iMAGuestCustomer() {
-        new StorePage(driver).load(MyConstants.STORE);
+        //new StorePage(driver).load(MyConstants.STORE);
+        new StorePage(driver).load(EndPoint.STORE.url);
     }
 
 
